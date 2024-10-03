@@ -1,6 +1,5 @@
 # Linux Luminarium
 ## Module 1: Hello Hackers
-
 ### Intro to Commands
 Firstly, when we open the terminal, it starts with
 `hacker@dojo:~$` which is a prompt that is prompting the user to enter a command.
