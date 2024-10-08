@@ -103,6 +103,7 @@ pwn.college{kXkwIiR1KADHanAbuR_H0AfhiOs.dBTN4QDLyIzN0czW}
 ### 9. An Epic Filesystem Quest  
 In this challenge, we need to make alternate uses of `cd`, `ls` and `cat` functions wherever required as per clue.  
 
+```
 hacker@commands~an-epic-filesystem-quest:~$ cd /
 hacker@commands~an-epic-filesystem-quest:/$ ls
 BLUEPRINT  boot       dev  flag  lib    lib64   media  nix  proc  run   srv  tmp  var
@@ -113,21 +114,19 @@ The next clue is in: /opt/aflplusplus/nyx_mode/libnyx/libnyx
 
 The next clue is **hidden** --- its filename starts with a '.' character. You'll need to look for it using special options to 'ls'.
 hacker@commands~an-epic-filesystem-quest:/$ cd /opt/aflplusplus/nyx_mode/libnyx/libnyx
-hacker@commands~an-epic-filesystem-quest:/opt/aflplusplus/nyx_mode/libnyx/libnyx$ ls -a
-.  ..  .BRIEF  .gitignore  Cargo.lock  Cargo.toml  build.rs  cbindgen.toml  libnyx.h  src  target  test.c  test.sh
+.
+.
 hacker@commands~an-epic-filesystem-quest:/opt/aflplusplus/nyx_mode/libnyx/libnyx$ cat .BRIEF
 Great sleuthing!
 The next clue is in: /opt/linux/linux-5.4/include/trace/events
 
 Watch out! The next clue is **trapped**. You'll need to read it out without 'cd'ing into the directory; otherwise, the clue will self destruct!
-
-hacker@commands~an-epic-filesystem-quest:/opt/aflplusplus/nyx_mode/libnyx/libnyx$ ls /opt/linux/linux-5.4/include/trace/events
-9p.h                f2fs.h               iocost.h      net.h                rpcrdma.h   tegra_apb_dma.h
-TIP-TRAPPED         
-
+.
+.
+TIP-TRAPPED 
 hacker@commands~an-epic-filesystem-quest:/opt/aflplusplus/nyx_mode/libnyx/libnyx$ cat Great sleuthing!
-The next clue is in: /opt/linux/linux-5.4/include/trace/events                    ls /opt/linux/linux-5.4/include/trace/events
-                                                                                  cd /
+The next clue is in: /opt/linux/linux-5.4/include/trace/events 
+hacker@commands~an-epic-filesystem-quest:/$ ls /opt/linux/linux-5.4/include/trace/events
 hacker@commands~an-epic-filesystem-quest:/$ cd /opt/aflplusplus/nyx_mode/libnyx/libnyx
 hacker@commands~an-epic-filesystem-quest:/opt/aflplusplus/nyx_mode/libnyx/libnyx$ ls -a
 .  ..  .BRIEF  .gitignore  Cargo.lock  Cargo.toml  build.rs  cbindgen.toml  libnyx.h  src  target  test.c  test.sh
@@ -145,7 +144,7 @@ The next clue is in: /opt/angr-management/_internal/PySide6/Qt/qml/QtTextToSpeec
 
 Watch out! The next clue is **trapped**. You'll need to read it out without 'cd'ing into the directory; otherwise, the clue will self destruct!
 hacker@commands~an-epic-filesystem-quest:/opt/aflplusplus/nyx_mode/libnyx/libnyx$ ls /opt/angr-management/_internal/PySide6/Qt/qml/QtTextToSpeech
-POINTER-TRAPPED  libtexttospeechqmlplugin.so  plugins.qmltypes  qmldir
+.
 hacker@commands~an-epic-filesystem-quest:/opt/aflplusplus/nyx_mode/libnyx/libnyx$ cat /opt/angr-management/_internal/PySide6/Qt/qml/QtTextToSpeech/POINTER-TRAPPED
 Tubular find!
 The next clue is in: /opt/aflplusplus/.git/modules/nyx_mode/packer/logs/refs/remotes/origin
@@ -154,6 +153,7 @@ HEAD  NUGGET
 
 hacker@commands~an-epic-filesystem-quest:/opt/aflplusplus/nyx_mode/libnyx/libnyx$ cat /opt/aflplusplus/.git/modules/nyx_mode/packer/logs/refs/remotes/origin/HEAD
 0000000000000000000000000000000000000000 bcf3e248b660764f48af54232a3388389a2dfc22 root <root@buildkitsandbox.(none)> 1725641028 +0000   clone: from https://github.com/nyx-fuzz/packer.git
+
 hacker@commands~an-epic-filesystem-quest:/opt/aflplusplus/nyx_mode/libnyx/libnyx$ cat /opt/aflplusplus/.git/modules/nyx_mode/packer/logs/refs/remotes/origin/NUGGET
 Yahaha, you found me!
 The next clue is in: /opt/pwndbg/.venv/lib/python3.8/site-packages/nacl/bindings
@@ -161,9 +161,9 @@ The next clue is in: /opt/pwndbg/.venv/lib/python3.8/site-packages/nacl/bindings
 The next clue is **delayed** --- it will not become readable until you enter the directory with 'cd'.
 hacker@commands~an-epic-filesystem-quest:/opt/aflplusplus/nyx_mode/libnyx/libnyx$ cd /opt/pwndbg/.venv/lib/python3.8/site-packages/nacl/bindings
 hacker@commands~an-epic-filesystem-quest:/opt/pwndbg/.venv/lib/python3.8/site-packages/nacl/bindings$ ls
-GIST         crypto_aead.py  crypto_generichash.py  crypto_pwhash.py      crypto_secretstream.py  randombytes.py
-__init__.py  crypto_box.py   crypto_hash.py         crypto_scalarmult.py  crypto_shorthash.py     sodium_core.py
-__pycache__  crypto_core.py  crypto_kx.py           crypto_secretbox.py   crypto_sign.py          utils.py
+.
+.
+.
 hacker@commands~an-epic-filesystem-quest:/opt/pwndbg/.venv/lib/python3.8/site-packages/nacl/bindings$ cat GIST
 Tubular find!
 The next clue is in: /usr/share/man/fr/man8
@@ -171,7 +171,7 @@ The next clue is in: /usr/share/man/fr/man8
 The next clue is **hidden** --- its filename starts with a '.' character. You'll need to look for it using special options to 'ls'.
 hacker@commands~an-epic-filesystem-quest:/opt/pwndbg/.venv/lib/python3.8/site-packages/nacl/bindings$ cd /usr/share/man/fr/man8
 hacker@commands~an-epic-filesystem-quest:/usr/share/man/fr/man8$ ls -a
-
+.
 hacker@commands~an-epic-filesystem-quest:/usr/share/man/fr/man8$ cat .INSIGHT
 Great sleuthing!
 The next clue is in: /opt/pwndbg/.venv/lib/python3.8/site-packages/pwnlib/shellcraft/templates/thumb/android/syscalls
@@ -187,8 +187,10 @@ hacker@commands~an-epic-filesystem-quest:/opt/pwndbg/.venv/lib/python3.8/site-pa
 /linux/linux-5.4/sound/soc/sh/rcar
 hacker@commands~an-epic-filesystem-quest:/opt/linux/linux-5.4/sound/soc/sh/rcar$ ls
 LEAD  Makefile  adg.c  cmd.c  core.c  ctu.c  dma.c  dvc.c  gen.c  mix.c  rsnd.h  src.c  ssi.c  ssiu.c
+
 hacker@commands~an-epic-filesystem-quest:/opt/linux/linux-5.4/sound/soc/sh/rcar$ cat LEAD
 CONGRATULATIONS! Your perserverence has paid off, and you have found the flag!
 It is: pwn.college{gFo1Uxk4z7gMYnFCgPU5giWKVds.dljM4QDLyIzN0czW}
+```
 
 
