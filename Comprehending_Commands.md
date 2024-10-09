@@ -211,7 +211,7 @@ pwn.college{kw48hvoPdSe-2-VZmbUSd99vYBI.dFzM4QDLyIzN0czW}
 
 ### finding files  
 `find` command is used to find a specific file in the directory. We need to specify the search criteria and location with find. If we don't specify a search criteria, find matches every file and if we don't specify a search location, it find in the current working directory (.).  
-Here, we need to find a file named **flag**. For that first I changed the firectory from /home/hacker to /. Then i searched the whole file system for the name flag.  
+Here, we need to find a file named **flag**. For that first I changed the firectory from /home/hacker to /. Then i searched the whole file system for the name flag. find has a **-name** argument, which itself takes an argument and specifies the name to search for.   
 We need to ignore all the paths with permission denied. So I checked the all the other paths one-by-one using cat command.  
 ```
 hacker@commands~finding-files:~$ cd /
