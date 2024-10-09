@@ -193,4 +193,71 @@ CONGRATULATIONS! Your perserverence has paid off, and you have found the flag!
 It is: pwn.college{gFo1Uxk4z7gMYnFCgPU5giWKVds.dljM4QDLyIzN0czW}
 ```
 
+### making directories  
+`mkdir` command can be used to make new directories.  
+In this we need to create directory named **pwn** in tmp file. Then we need to create a file named **college** in it using `touch` command.  
+```
+hacker@commands~making-directories:~$ cd /tmp
+hacker@commands~making-directories:/tmp$ mkdir pwn
+hacker@commands~making-directories:/tmp$ ls
+bin              pwn             vscode-git-cd7c934b8b.sock                            vscode-ipc-a635f5fd-3918-4cfc-b109-5fe445c2babc.sock
+hsperfdata_root  tmp.MiOQGWw5Zc  vscode-ipc-8097d6cc-c11b-41ee-9137-cbbdf3c6b5f7.sock
+hacker@commands~making-directories:/tmp$ cd pwn
+hacker@commands~making-directories:/tmp/pwn$ touch college
+hacker@commands~making-directories:/tmp/pwn$ /challenge/run
+Success! Here is your flag:
+pwn.college{kw48hvoPdSe-2-VZmbUSd99vYBI.dFzM4QDLyIzN0czW}
+```
+
+### finding files  
+`find` command is used to find a specific file in the directory. We need to specify the search criteria and location with find. If we don't specify a search criteria, find matches every file and if we don't specify a search location, it find in the current working directory (.).  
+Here, we need to find a file named **flag**. For that first I changed the firectory from /home/hacker to /. Then i searched the whole file system for the name flag.  
+We need to ignore all the paths with permission denied. So I checked the all the other paths one-by-one using cat command.  
+```
+hacker@commands~finding-files:~$ cd /
+hacker@commands~finding-files:/$ find -name flag
+find: ‘./tmp/tmp.MiOQGWw5Zc’: Permission denied
+find: ‘./etc/ssl/private’: Permission denied
+./usr/lib/locale/flag
+./usr/local/lib/python3.8/dist-packages/pwnlib/flag
+./usr/local/share/radare2/5.9.5/flag
+find: ‘./var/cache/apt/archives/partial’: Permission denied
+find: ‘./var/cache/ldconfig’: Permission denied
+find: ‘./var/cache/private’: Permission denied
+find: ‘./var/lib/apt/lists/partial’: Permission denied
+find: ‘./var/lib/mysql-files’: Permission denied
+find: ‘./var/lib/private’: Permission denied
+find: ‘./var/lib/mysql’: Permission denied
+find: ‘./var/lib/mysql-keyring’: Permission denied
+find: ‘./var/lib/php/sessions’: Permission denied
+find: ‘./var/log/private’: Permission denied
+find: ‘./var/log/apache2’: Permission denied
+find: ‘./var/log/mysql’: Permission denied
+find: ‘./run/mysqld’: Permission denied
+find: ‘./run/sudo’: Permission denied
+find: ‘./root’: Permission denied
+./opt/pwndbg/.venv/lib/python3.8/site-packages/pwnlib/flag
+./opt/radare2/libr/flag
+find: ‘./proc/tty/driver’: Permission denied
+find: ‘./proc/1/task/1/fd’: Permission denied
+find: ‘./proc/1/task/1/fdinfo’: Permission denied
+find: ‘./proc/1/task/1/ns’: Permission denied
+find: ‘./proc/1/fd’: Permission denied
+find: ‘./proc/1/map_files’: Permission denied
+find: ‘./proc/1/fdinfo’: Permission denied
+find: ‘./proc/1/ns’: Permission denied
+find: ‘./proc/7/task/7/fd’: Permission denied
+find: ‘./proc/7/task/7/fdinfo’: Permission denied
+find: ‘./proc/7/task/7/ns’: Permission denied
+find: ‘./proc/7/fd’: Permission denied
+find: ‘./proc/7/map_files’: Permission denied
+find: ‘./proc/7/fdinfo’: Permission denied
+find: ‘./proc/7/ns’: Permission denied
+./nix/store/1yagn5s8sf7kcs2hkccgf8d0wxlrv5sz-radare2-5.9.0/share/radare2/5.9.0/flag
+./nix/store/pmvk2bk4p550w182rjfm529kfqddnvh3-python3.11-pwntools-4.12.0/lib/python3.11/site-packages/pwnlib/flag
+hacker@commands~finding-files:/$ cat ./usr/lib/locale/flag
+pwn.college{gsu1dV-cePpB6JW-2BP5PgPq3eC.dJzM4QDLyIzN0czW}
+```
+
+### linking files  
 
