@@ -141,7 +141,9 @@ pwn.college{I7d3VytLaOmq1ARNP-wpLJuj_Fy.dlTM4QDLyIzN0czW}
 ```
 
 ### 8. Grepping errors  
-Since the `|` operator can only transfer the standard output of a command, we cannot use it to tranfer standard errors. So here we make use of &> operator
+Since the `|` operator can only transfer the standard output of a command, we cannot use it to tranfer standard errors. So here we make use of &> operator which redirects a file descriptor to another file descriptor. Its done in 2 steps:   
+1. we redirect standard error to standard output (`2>& 1`)
+2. pipe the now-combined stderr and stdout as normal (`|`)
 ```
 hacker@piping~grepping-errors:~$ /challenge/run 2>& 1 | grep pwn.college
 [INFO] WELCOME! This challenge makes the following asks of you:
@@ -163,3 +165,27 @@ hacker@piping~grepping-errors:~$ /challenge/run 2>& 1 | grep pwn.college
 [PASS] You have passed the checks on the process on the other end of my stderr!
 [PASS] Success! You have satisfied all execution requirements.
 pwn.college{UNmdNG4vyrZ7yMM-LVcNfSHNDQV.dVDM5QDLyIzN0czW}
+```
+
+### 9.  Duplicating piped data with tee  
+The **tee** command duplicates data flowing through our pipes to any number of files provided on the command line. It allows us to copy the output of one command to several other commands.  
+```
+hacker@piping~duplicating-piped-data-with-tee:~$ /challenge/pwn | tee output | /challenge/college
+Processing...
+The input to 'college' does not contain the correct secret code! This code 
+should be provided by the 'pwn' command. HINT: use 'tee' to intercept the 
+output of 'pwn' and figure out what the code needs to be.
+hacker@piping~duplicating-piped-data-with-tee:~$ cat tee output
+cat: tee: No such file or directory
+Usage: /challenge/pwn --secret [SECRET_ARG]
+
+SECRET_ARG should be "QOMmfxSS"
+
+hacker@piping~duplicating-piped-data-with-tee:~$ /challenge/pwn --secret QOMmfxSS | /challenge/college
+Processing...
+Correct! Passing secret value to /challenge/college...
+Great job! Here is your flag:
+pwn.college{QOMmfxSSpo9bxilGSPoHrw4pTjU.dFjM5QDLyIzN0czW}
+```
+
+
