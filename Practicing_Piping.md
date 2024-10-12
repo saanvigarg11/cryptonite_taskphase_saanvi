@@ -116,7 +116,7 @@ pwn.college{MBCTqAWAxwvjPzyqgY3uD2n1Cuj.dhTM4QDLyIzN0czW}
 
 ### 7. Grepping live output  
 The pipe `|` operator is used to tranfer the output of a file(left hand side) to another file(right hand side).   
-In this, /challenge/run which has the output (flag) is taken as the input for grep command, which hence prints the flag.   
+In this, /challenge/run which has the output (flag file) is taken as the input for grep command, which then searches for pwn.college in the flag file and hence prints the flag.   
 ```
 hacker@piping~grepping-live-output:~$ /challenge/run | grep pwn.college
 [INFO] WELCOME! This challenge makes the following asks of you:
@@ -140,8 +140,12 @@ hacker@piping~grepping-live-output:~$ /challenge/run | grep pwn.college
 pwn.college{I7d3VytLaOmq1ARNP-wpLJuj_Fy.dlTM4QDLyIzN0czW}
 ```
 
+Difference observed between `>` and `|` operator:
+**|** connects two commands, and allows them to work simultaneously, by sending output from one command as input for another.
+**>** redirects output to another file and doesn't display it in the terminal, storing it for later usage.  
+
 ### 8. Grepping errors  
-Since the `|` operator can only transfer the standard output of a command, we cannot use it to tranfer standard errors. So here we make use of &> operator which redirects a file descriptor to another file descriptor. Its done in 2 steps:   
+Since the `|` operator can only transfer the standard output of a command, we cannot use it to tranfer standard errors. So here we make use of `&>` operator which redirects a file descriptor to another file descriptor. Its done in 2 steps:   
 1. we redirect standard error to standard output (`2>& 1`)
 2. pipe the now-combined stderr and stdout as normal (`|`)
 ```
@@ -188,4 +192,34 @@ Great job! Here is your flag:
 pwn.college{QOMmfxSSpo9bxilGSPoHrw4pTjU.dFjM5QDLyIzN0czW}
 ```
 
+### 10. Writing to multiple programs  
+Here we are asked to duplicate the output of /challenge/run to two files. When I tried to do this, it displayed permission denied as tee is designed to write to files and not to file paths.  
+```
+hacker@piping~writing-to-multiple-programs:~$ /challenge/hack | tee /challenge/the /challenge/planet
+WARNING: it looks like you passed the path /challenge/the, instead of the 
+substituted process, to tee. This will cause tee to try to write to the 
+/challenge/the file, rather than have the shell launch the /challenge/the 
+command and redirect tee's output to it.
+/usr/bin/tee: /challenge/the: Permission denied
+/usr/bin/tee: /challenge/planet: Permission denied
+This secret data must directly and simultaneously make it to /challenge/the and 
+/challenge/planet. Don't try to copy-paste it; it changes too fast.
+15008248732015810373  
+```
+Hence we can use process substition, wherein I used the `>` operator and parentheses(), which allows the output of tee to be redirected as input to the commands `/challenge/the` and `/challenge/planet` (as processes and not files).
+```
+hacker@piping~writing-to-multiple-programs:~$ /challenge/hack | tee >(/challenge/the)| (/challenge/planet)
+Congratulations, you have duplicated data into the input of two programs! Here 
+is your flag:
+pwn.college{IJFmCwolvpuHcJ6iXVZ2ZL6uhZk.dBDO0UDLyIzN0czW}
+```
 
+### 11. split-piping stderr and stdout   
+We again use process substitution, one time for stdout and other time for stderr.
+
+```
+hacker@piping~split-piping-stderr-and-stdout:~$ /challenge/hack > >(/challenge/planet) 2> >( /challenge/the)
+Congratulations, you have learned a redirection technique that even experts 
+struggle with! Here is your flag:
+pwn.college{otDYMUw7cn9o1urwo4Tr5M0CnMz.dFDNwYDLyIzN0czW}
+```
