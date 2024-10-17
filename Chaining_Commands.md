@@ -34,6 +34,17 @@ Correct! Here is your flag:
 pwn.college{4_DARE8XedC0NHlHfKXFSzLPj24.dhTM5QDLyIzN0czW}
 ```
 
-### 4. 
+### 4. Executable Shell Scripts  
+In this we need to execute /challenge/solve without using bash. So we can do it by allowing the executing permissions of the file. Then we can execute it by `./` as we are in home directory.  
+```
+hacker@chaining~executable-shell-scripts:~$ nano x.sh
+hacker@chaining~executable-shell-scripts:~$ ls -l /challenge/solve
+-rwsr-xr-x 1 root root 597 Jul  4 07:53 /challenge/solve
+hacker@chaining~executable-shell-scripts:~$ chmod +x x.sh
+hacker@chaining~executable-shell-scripts:~$ ./x.sh
+Congratulations on your shell script execution! Your flag:
+pwn.college{IqYLcpeVnGWj4Vf-GevsL-CssXs.dRzNyUDLyIzN0czW}
+```
+
 
 
