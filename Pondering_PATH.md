@@ -30,8 +30,9 @@ pwn.college{4j5QMzChpy5FVop3UWX-hgQh8U8.dVzNyUDLyIzN0czW}
 
 ### 3. Adding Commands  
 First we again need to create a nano file named win and add the following code in it.  
-```read -r flag < /flag
-echo "$flag"
+```
+read -r flag < /flag
+echo $flag
 ```
 We can just read the flag and the echo it, since we can't directly use the cat command.  
 Now we need to make them executable by using `+x` argument with `chmod` command.  
