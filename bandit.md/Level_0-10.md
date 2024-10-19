@@ -36,3 +36,37 @@ bandit2@bandit:~$ cat "spaces in this filename"
 MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
 ```
 
+## Level 3-4  
+Here, the password is in a file of a directory inhere. So we first need to change to that directory using `cd` command.  
+Then for hidden files to show, we use `-a` with ls.  
+```
+bandit3@bandit:~$ ls -la
+total 24
+drwxr-xr-x  3 root root 4096 Sep 19 07:08 .
+drwxr-xr-x 70 root root 4096 Sep 19 07:09 ..
+-rw-r--r--  1 root root  220 Mar 31  2024 .bash_logout
+-rw-r--r--  1 root root 3771 Mar 31  2024 .bashrc
+drwxr-xr-x  2 root root 4096 Sep 19 07:08 inhere
+-rw-r--r--  1 root root  807 Mar 31  2024 .profile
+bandit3@bandit:~$ cd inhere
+bandit3@bandit:~/inhere$ ls
+bandit3@bandit:~/inhere$ ls -a
+.  ..  ...Hiding-From-You
+bandit3@bandit:~/inhere$ cat ...Hiding-From-You
+2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+```
+
+## Level 4-5  
+
+
+## Level 5-6  
+In this, the password can be in any of the files from file00 to file09. So I used cat command for all the files one by one to find the password:   
+```
+bandit4@bandit:~/inhere$ cat ./-file07
+4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw  
+```
+_Alternatively, we can also use the following find and grep commands to find the file with ASCII charcaters as all the other files have non-printable characters._  
+```
+bandit4@bandit:~/inhere$ find . -type f -exec file {} + | grep ASCII
+./-file07: ASCII text
+```
