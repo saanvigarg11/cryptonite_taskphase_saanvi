@@ -57,9 +57,6 @@ bandit3@bandit:~/inhere$ cat ...Hiding-From-You
 ```
 
 ## Level 4-5  
-
-
-## Level 5-6  
 In this, the password can be in any of the files from file00 to file09. So I used cat command for all the files one by one to find the password:   
 ```
 bandit4@bandit:~/inhere$ cat ./-file07
@@ -70,3 +67,47 @@ _Alternatively, we can also use the following find and grep commands to find the
 bandit4@bandit:~/inhere$ find . -type f -exec file {} + | grep ASCII
 ./-file07: ASCII text
 ```
+
+## Level 5-6  
+Here, I first changed the directory into inhere, then used `find` command to get the right file.  
+```
+bandit5@bandit:~$ cd inhere
+bandit5@bandit:~/inhere$ ls -la
+total 88
+drwxr-x--- 22 root bandit5 4096 Sep 19 07:08 .
+drwxr-xr-x  3 root root    4096 Sep 19 07:08 ..
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere00
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere01
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere02
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere03
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere04
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere05
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere06
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere07
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere08
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere09
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere10
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere11
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere12
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere13
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere14
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere15
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere16
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere17
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere18
+drwxr-x---  2 root bandit5 4096 Sep 19 07:08 maybehere19
+bandit5@bandit:~/inhere$ find -readable -size 1033c
+./maybehere07/.file2
+bandit5@bandit:~/inhere$ cat ./maybehere07/.file2
+HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+```
+
+## Level 6-7  
+Here, we don't know the exact directory where the file with the password is located. So we first command   
+`find / -type f -user bandit7 -group bandit6 -size 33c`, but it showed many files with permission denied. Hence to find the file which we have access to, I used the following:  
+```
+bandit6@bandit:~$ find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
+/var/lib/dpkg/info/bandit7.password
+bandit6@bandit:~$ cat /var/lib/dpkg/info/bandit7.password
+morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+```  
