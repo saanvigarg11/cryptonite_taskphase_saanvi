@@ -62,7 +62,7 @@ In this, the password can be in any of the files from file00 to file09. So I use
 bandit4@bandit:~/inhere$ cat ./-file07
 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw  
 ```
-_Alternatively, we can also use the following find and grep commands to find the file with ASCII charcaters as all the other files have non-printable characters._  
+_Alternatively, we can also use the following `find` and `grep` commands to find the file with ASCII charcaters as all the other files have non-printable characters._  
 ```
 bandit4@bandit:~/inhere$ find . -type f -exec file {} + | grep ASCII
 ./-file07: ASCII text
@@ -110,4 +110,51 @@ bandit6@bandit:~$ find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/n
 /var/lib/dpkg/info/bandit7.password
 bandit6@bandit:~$ cat /var/lib/dpkg/info/bandit7.password
 morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
-```  
+```
+
+## Level 7-8  
+When we try to cat data.txt, it lists a lot of files. So instead of that, I used the `piping` operator with `cat` and `grep` command.  
+```
+bandit7@bandit:~$ ls -a
+.  ..  .bash_logout  .bashrc  data.txt  .profile
+bandit7@bandit:~$ cat data.txt | grep millionth
+millionth       dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc  
+```
+
+## Level 8-9  
+In this challenge, we had to use the `sort` and `uniq` command.  
+The **sort** command sorts the contents of the file data.txt, making the **duplicate lines adjacent** to each other.  
+The **uniq** command filters out those lines which are repeated. The -u flag displays the lines that appear only once.  
+```
+bandit8@bandit:~$ ls -a
+.  ..  .bash_logout  .bashrc  data.txt  .profile
+bandit8@bandit:~$ sort data.txt | uniq -u
+4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+```
+
+## Level 9-10  
+I made the use of **`strings`** command which allows us to print all the readable ASCII characters from the file, and then the `grep` command as the password is preceded by **=** signs.  
+```
+bandit9@bandit:~$ strings data.txt | grep =
+}========== the
+p\l=
+;c<Q=.dEXU!
+3JprD========== passwordi
+qC(=
+~fDV3========== is
+7=oc
+zP=
+~de=
+3k=fQ
+~o=0
+69}=
+%"=Y
+=tZ~07
+D9========== FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+N=~[!N
+zA=?0j
+```
+
+
+
+
