@@ -14,4 +14,15 @@ The decoded data was:
 The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
 ```
 
+## Level 11-12  
+Here, when we had to shift all the characters by 13 using ROT13 cipher text converter.  
+```
+bandit11@bandit:~$ cat data.txt
+Gur cnffjbeq vf 7k16JArUVv5LxVuJfsSVdbbtaHGlw9D4
+```
+The decoded text was:  
+```
+The password is 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+```
+
 ## 
