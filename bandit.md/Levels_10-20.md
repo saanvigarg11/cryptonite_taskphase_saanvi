@@ -28,17 +28,20 @@ The password is 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
 ##  Level 12-13  
 Here, a number of commands were used to zip and unzip files. Some of them are listed below:  
 `file`: used to know the type of the file.
-for eg: 
-If it's **gzip file (.gz)**, it will say **gzip compressed data**.
-If it's **bzip2 file (.bz2)**, it will say **bzip2 compressed data**.
-If it's **tar archive (.tar)**, it will say **POSIX tar archive**.    
+for eg:   
+If it's **gzip file (.gz)**, it will say **gzip compressed data**.  
+If it's **bzip2 file (.bz2)**, it will say **bzip2 compressed data**.  
+If it's **tar archive (.tar)**, it will say **POSIX tar archive**.      
 `temp=$(mktemp -d)` : This was used to create a temporary directory using command mktemp -d(as mentioned in the description, and then store that name in a shell variable temp(using **$** symbol).  
 `cp`: used to copy the file.  
 `mv`: used to rename the file. The format goes like   
-`mv [original file name] [new file name(with any extension if needed)]`
+`mv [original file name] [new file name(with any extension if needed)]`  
 `xxd -r`: to reverse the hexdump file, i.e convert it back to its original binary form.  
 
 The file data.txt contained hexdumped data, which had to be compressed in other forms.  
+So I used the following commands for first changing directory to a temporary one and then renaming files.  
+I basically saw that if I recompress the tar file repeatedly, I can get the ASCII file(readable format). It kept creating new files with different formats which i had to determine using file. Then finally got the b7 file which had ASCII values and hence the password.  
+
 ```
 bandit12@bandit:~$ ls
 data.txt
@@ -82,8 +85,7 @@ bandit12@bandit:~$ cat data.txt
 00000240: 421f 4a9f 9feb 2ec9 83e2 c20f fc5d c914  B.J..........]..
 00000250: e142 432a 0ecb 0459 1b15 923e 0200 00    .BC*...Y...>...
 ```
-So I used the following commands for first changing directory to a temporary one and then renaming files.  
-I basically saw that if I recompress the tar file repeatedly, I can get the ASCII file(readable format). It kept creating new files with different formats which i had to determine using file. Then finally got the b7 file which had ASCII values and hence the password.  
+
 
 ```
 bandit12@bandit:~$ temp=$(mktemp -d)
