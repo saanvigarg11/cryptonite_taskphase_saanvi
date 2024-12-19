@@ -126,6 +126,8 @@ if __name__ == "__main__":
 
 Here, I added the functions `decrypt` and `dynamic_xor_decrypt`.  
 **Plain Text**: It is the message which is readable or understandable. This message is given to the encryption algorithm as an input.  
+![image](https://github.com/user-attachments/assets/92e27714-396e-4790-ac15-8c31823159a4)
+
 I assigned the values **88** and **26** to **a** and **b** respectively and the ciphertext as given in the flag_info file, and **p** and **g** were received from the test function which was used for encryption.   
 
 The output hence came was the required flag:  
