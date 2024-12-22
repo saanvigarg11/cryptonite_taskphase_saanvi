@@ -80,21 +80,21 @@ main:
 On checking the program bit by bit, 
 for the code,  
 ```
-str	w0, [sp, 12]
-	mov	w0, 81
-	str	w0, [sp, 16]
-	str	wzr, [sp, 20]
-	mov	w0, 3
-	str	w0, [sp, 24]
-	ldr	w0, [sp, 20]
-	ldr	w1, [sp, 16]
+str w0, [sp, 12]
+mov w0, 81
+str w0, [sp, 16]
+str wzr, [sp, 20]
+mov w0, 3
+str w0, [sp, 24]
+ldr w0, [sp, 20]
+ldr w1, [sp, 16]
 ```  
 The user input is stored at `[sp, 12]`.
 and the fixed values are intialized as 
 `81` is stored at `[sp, 16]`.  
 `0` is stored at `[sp, 20]`. (`wzr` stands for "**zero register**". It is a special-purpose register that always holds the value 0)  
 `3` is stored at `[sp, 24]`.   
->The `mov` command means the value 81 is moved into w0.  
+The `mov` command means the value 81 is moved into w0.  
 and `[sp, 16]` means `stack + 16`.  
 
 >`ldr` stands for **Load Register**.
@@ -117,11 +117,11 @@ As the hint indicated, we are going to deal with shift operators.
 Syntax: `lsl x,y,z`
 which means shift the value in y by z and store the result in x.  
 w1 = `[sp, 16]` (81).
-w0 = `[sp, 20]` (0).
+w0 = `[sp, 20]` (0).   
 So,` lsl w0, w1, w0` means w0 = 81 << 0 = 81.  
 store the result at `[sp, 28]`.  
 
-ldr	w1, [sp, 28] loading 81 into w1
+ldr	w1, [sp, 28] loading 81 into w1,    
 ldr	w0, [sp, 24] loading 3 into w0.  
 
 Moving to next  
@@ -130,11 +130,11 @@ sdiv	w0, w1, w0
 str	w0, [sp, 28]
 ldr	w1, [sp, 28]
 ldr	w0, [sp, 12]
-```
+```  
 
 >`sdiv` means **signed division**.
-Syntax: `sdiv x,y,z`
-Divide y by z and store in x.
+Syntax: `sdiv x,y,z`  
+Divide y by z and store in x.  
 
 In this case, w1//w0, i.e., 81//3 = 27 stored in w0.[sp, 28]  
 
@@ -156,7 +156,14 @@ y-z and store in x.
 Hence w0= 27 - user input, storing the result in stack + 28 and load that result back into w0.  
 Return.   
 
-Now, in order to 
+Now, since the result of the subtraction is returned to the `main` function, the program prints `win` if the result is 0.  
+Hence, 27−input=0
+which implies that **input=27** .
+
+According to the given flag format, 
+converting 27 to hexadecimal, we get **1b**.  
+Placing 0s in the starting, we get the following flag:  
+**`picoCTF{0000001b}`**
 
 
 
