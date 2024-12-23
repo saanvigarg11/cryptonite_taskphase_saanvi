@@ -13,10 +13,10 @@ ciphertext (c): 2205316413931134031074603746928247799030155221252519872650080519
 
 After referring to these sites, https://ctf101.org/cryptography/what-is-rsa/ and https://en.wikipedia.org/wiki/RSA_(cryptosystem)  
 got to know few basic terms about RSA.  
-> **RSA (Rivest–Shamir–Adleman)**(kept after its authors) is a public-key cryptosystem, which is one of those oldest widely used for RSA (Rivest–Shamir–Adleman) is a public-key cryptosystem, one of the oldest widely used for **secure data transmission**.
-> It mainly has 2 keys:  
+> **RSA (Rivest–Shamir–Adleman)**(kept after its authors) is a public-key cryptosystem, which is one of those oldest widely used for **secure data transmission**.  
+> It mainly has 2 keys:    
 >**Public Key**: Used for encryption and is shared with everyone.  
->**Private Key**: Used for decryption and is kept secret.
+>**Private Key**: Used for decryption and is kept secret.  
 >
 >  An RSA user creates and publishes a public key based on **two large prime numbers**, along with an
 > auxiliary value. _The prime numbers are kept secret_. Messages can be encrypted by anyone, via the public key, but can only be decrypted by
@@ -34,7 +34,7 @@ Coming to the calculations part,
 <img width="155" alt="image" src="https://github.com/user-attachments/assets/51433db5-f1f6-4537-9307-e0189b3e6ceb" />    
 However, when given only e and n, it is extremely difficult to find d.(as its private)  
 
-Approaching the problem now, as the hint stated, we can't approximate the numbers. So I went forward a Python program for doing binary search and then do the calculation part.  
+Approaching the problem now, as the hint stated, we can't approximate the numbers. So I went forward a Python program for doing **binary search** and then do the calculation part.  
 ```
 def integer_nth_root(x, n):
     """Find the integer nth root of x."""
@@ -61,20 +61,15 @@ if M**e == c:
 ```
 
 RSA is done in 3 steps:  
--Key Generation (_We are already given the values so we need not worry about this._)
--Encryption
--Decryption  
+-**Key Generation** (_We are already given the values so we need not worry about this._)    
+-**Encryption**  
+-**Decryption**  
 
 The function `integer_nth_root` computes the integer n-th root of a given number x. I ran a binary search to calculate this integer root.  
-integer_nth_root calculates the integer 
-𝑛
-n-th root using binary search.
-It works for large numbers without any external libraries.
+It works for large numbers without any need of external libraries.
 
-After computing M, the next step is to verify that it is indeed the correct plaintext by checking if:
-Our goal is to compute the original message M from the ciphertext(c). Since the RSA encryption is c = M^e mod N, where e=3, we are trying to calculate the 
-integer cube root of c to recover the message M.   
-`M = integer_nth_root(c, e)`  
+Our goal is to calculate the original message `M` from the ciphertext(`c`). Since the RSA encryption is `c = M^e mod N`, where `e=3`, we are trying to calculate the integer cube root of `c` to recover the message `M`.   
+`M = integer_nth_root(c, e)`   
 
 The final step is to verify that it is the correct plaintext by checking if:  
 `M**e == c`  
@@ -86,14 +81,14 @@ root@DESKTOP-0QGCC7M:/mnt/c/Users/Laptop/Downloads# python3 rsa.py
 Decrypted plaintext (exact root): 13016382529449106065894479374027604750406953699090365388203722801043052339225981  
 ```
 
-Converting this to hexadecimal form using python, i got:  
+Converting this to **hexadecimal** form using python, i got:  
 ```
 >>>hex(13016382529449106065894479374027604750406953699090365388203722801043052339225981)
 '0x7069636f4354467b6e3333645f615f6c41726733725f655f64306364366561657d'
 ```
 
-It seemed that the flag can be reached by changing this form to ASCII or text form.    
-Using this [tool] #https://www.rapidtables.com/convert/number/hex-to-ascii.html got the following flag!    
+It seemed that the flag can be reached by changing this form to **ASCII or text** form.    
+Using this [tool](https://www.rapidtables.com/convert/number/hex-to-ascii.html), got the following flag!  
 <img width="464" alt="image" src="https://github.com/user-attachments/assets/8914f78b-2585-46b8-9a61-e819828b10d2" />    
 
 **`picoCTF{n33d_a_lArg3r_e_d0cd6eae}`**
