@@ -3,12 +3,12 @@
 ## m00nwalk  
 <img width="433" alt="image" src="https://github.com/user-attachments/assets/ad67f4ee-db61-40b2-b468-2a478b779bc8" />  
 
-It included an audio file with some sound. As the hint suggested, I went on finding about how images are sent from moon 
+It included an audio file(`wav` type) with some sound. As the hint suggested, I went on finding about how images are sent from moon 
 to the Earth. This website https://en.wikipedia.org/wiki/Apollo_11_missing_tapes helped in gaining some clue.  
 
 >**SSTV (Slow Scan Television)** is a method of sending and receiving **still images** using **radio frequencies**. 
->Unlike traditional TV, which transmits many frames per second, SSTV transmits** one image frame at a time**,
->typically over amateur radio. It’s often used by ham radio operators and even in **space communications**,
+>Unlike traditional TV, which transmits many frames per second, SSTV transmits **one image frame at a time**,
+>typically over amateur **radio**. It’s often used by ham radio operators, as in **space communications**,
 >like sending images from the International Space Station (ISS).  
 >
 >In the website, it talked about the **Apollo 11** missing tapes were those that were recorded from
@@ -19,7 +19,7 @@ to the Earth. This website https://en.wikipedia.org/wiki/Apollo_11_missing_tapes
 >Its mostly used in industries such as aerospace, environmental monitoring, etc.
 
 
-Since were given an audio message, it gave an idea to decode it into an image. For that,  
+Since we were given an audio message, it gave an idea to decode it into an **image**. For that,  
 intially I tried using tools like `qsstv` and `pavucontrol` when i searched through this [article](https://ourcodeworld.com/articles/read/956/how-to-convert-decode-a-slow-scan-television-transmissions-sstv-audio-file-to-images-using-qsstv-in-ubuntu-18-04).  
 But in my wsl, it kept showing errors like these even after reinstalling this library `libQt5Core.so.5` and updating, etc.  
 ```
@@ -30,15 +30,15 @@ root@DESKTOP-0QGCC7M:/mnt/c/Users/Laptop/Downloads# pavucontrol
 (pavucontrol:405): Gtk-WARNING **: 20:58:44.536: cannot open display:  
 ```
 
-So I found some more resources like [this one](https://github.com/colaclanth/sstv/tree/master/sstv) which mentioned the way to convert the file with the help of 
+So I found some more resources like [this one](https://github.com/colaclanth/sstv/tree/master/sstv) which mentioned the way to convert the file without the use of qsstv, by taking help of 
 some Python codes.  
-On running the following commands, I finally got the image that contained the flag!  
+On running the following commands, I finally got the image(`result.png` which got automatically created in my folder) that contained the flag!  
 ```
-git clone https://github.com/colaclanth/sstv.git
+root@DESKTOP-0QGCC7M:/mnt/c/Users/Laptop/Downloads# git clone https://github.com/colaclanth/sstv.git
 .
 .
 .
-python setup.py install
+root@DESKTOP-0QGCC7M:/mnt/c/Users/Laptop/Downloads# python setup.py install
 .
 .
 .  
@@ -52,7 +52,7 @@ This warnings indicates broken support for the dtype!
 [sstv] Drawing image data...
 [sstv] ...Done!  
 ```
-The Python code of setup.py was:  
+The Python code of `setup.py` was:  
 ```
 from setuptools import setup
 
@@ -82,12 +82,13 @@ setup(name="sstv",
           'Programming Language :: Python :: 3',
       ])
 
-![result]
+!
 ```
-(https://github.com/user-attachments/assets/6719a882-c5c9-45d2-bbb1-f90028cfc0b4)  
+![result](https://github.com/user-attachments/assets/1fa41936-8f2e-42cd-a5ad-34cc7ecb54e9)   
+
 
 This was the image that contained the flag:  
-**`picoCTF{beep_boop_im_in_space}`**
+**`picoCTF{beep_boop_im_in_space}`** 
 
 
 
