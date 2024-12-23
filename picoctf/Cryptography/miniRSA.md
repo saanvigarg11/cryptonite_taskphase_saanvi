@@ -1,4 +1,4 @@
-# Cyrptography  
+# Cryptography  
 
 ## miniRSA  
 <img width="437" alt="image" src="https://github.com/user-attachments/assets/ccd125f9-b45e-4fec-89d2-ecb38a813094" />  
